@@ -1,3 +1,6 @@
 <resources>
-    <string name="app_name">AnimalGame</string>
+    <string name="app_name">Animal Kingdom</string>
+    <string name ="enterName">Enter your name...</string>
+    <string name="startGame">Start Game!</string>
+    <string name="howToPlay">How to Play?</string>
 </resources>

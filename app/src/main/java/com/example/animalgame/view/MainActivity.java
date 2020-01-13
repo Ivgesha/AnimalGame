@@ -1,9 +1,11 @@
-package com.example.animalgame;
+package com.example.animalgame.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.Toast;
+
+import com.example.animalgame.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -11,6 +13,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toast.makeText(this,"Welcome",Toast.LENGTH_LONG).show();
+
     }
 }

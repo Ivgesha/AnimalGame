@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ממלכת החיות</string>
+    <string name="enterName">הכנס את שימך...</string>
+    <string name ="startGame">התחל משחק!</string>
+    <string name="howToPlay">איך משחקים?</string>
+</resources>
