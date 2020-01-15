@@ -26,7 +26,7 @@ public class GameActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         countDownTimerTextView = findViewById(R.id.countDownTimerTextView);
         countDownTimerTextView.setText("Timer Time");
-
+//
         new CountDownTimer(10000, 1000) {
 
             @Override
