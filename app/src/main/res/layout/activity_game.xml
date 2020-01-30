@@ -9,13 +9,15 @@
     <TextView
         android:id="@+id/countDownTimerTextView"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="0dp"
         android:layout_marginTop="4dp"
-        android:fontFamily="casual"
+        android:layout_marginBottom="139dp"
 
-        android:textSize="30dp"
+        android:fontFamily="casual"
         android:text="Timer:"
+        android:textSize="30dp"
         android:textStyle="italic|bold"
+        app:layout_constraintBottom_toTopOf="@+id/images"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,10 +39,10 @@
         android:id="@+id/pointsTextView"
         android:layout_width="150dp"
         android:layout_height="40dp"
+        android:fontFamily="casual"
         android:text="Points: 0"
         android:textSize="30dp"
         android:textStyle="italic|bold"
-        android:fontFamily="casual"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,5 +101,15 @@
         app:layout_constraintEnd_toEndOf="parent">
 
     </Button>
+
+    <ImageView
+        android:id="@+id/images"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="223dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countDownTimerTextView"
+        app:srcCompat="@drawable/lion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
