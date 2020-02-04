@@ -35,15 +35,15 @@ public class GameActivity extends AppCompatActivity {
     public int points =0;
     public String rightanswer;
     TextView pointsTextView;
-    public int str_images_name_index;
-    public Images images[] = new Images[33];
+    public int str_images_name_index=0;
+    public Images images[] = new Images[35];
 
 
     String answers[] ={"Alligator","Cat","Chicken","Deer",
             "Dog","Donkey","Elaphent","Horse","Gorilla","Goat","Mice","Monkey",
             "Lion","Puma","Rabbit","Snake","Tiger","Wolf","Zebra"};
     
-    String str_images_name[] ={"alligator","cat","chicken","chicken","deer","deer",
+    String str_images_name[] ={"alligator","cat", "cat","chicken","chicken","deer","deer",
             "dog","dog","donkey", "eagle", "eagle", "elaphent","elaphent",
             "horse","horse","gorilla","gorilla","goat","goat","mice","mice","monkey",
             "lion","lion","puma","puma","rabbit","rabbit","snake","tiger","tiger","wolf","wolf","zebra"};
@@ -57,18 +57,18 @@ public class GameActivity extends AppCompatActivity {
         btn4= (Button) findViewById(R.id.answer4);
         img= (ImageView) findViewById(R.id.images);
         pointsTextView = (TextView) findViewById(R.id.pointsTextView);
-        final Images[] images   = { new Images(str_images_name[0].toString().toLowerCase(), R.drawable.alligator),new Images(str_images_name[1].toString().toLowerCase(), R.drawable.cat),new Images(str_images_name[2].toString().toLowerCase(), R.drawable.chicken),
-        new Images(str_images_name[3].toString().toLowerCase(), R.drawable.chicken_2),new Images(str_images_name[4].toString().toLowerCase(), R.drawable.deer),new Images(str_images_name[5].toString().toLowerCase(), R.drawable.deer_2),
-                new Images(str_images_name[6].toString().toLowerCase(), R.drawable.dog),new Images(str_images_name[7].toString().toLowerCase(), R.drawable.dog_2),new Images(str_images_name[8].toString().toLowerCase(), R.drawable.donkey),
-                new Images(str_images_name[9].toString().toLowerCase(), R.drawable.eagle),new Images(str_images_name[10].toString().toLowerCase(), R.drawable.eagle_2),new Images(str_images_name[11].toString().toLowerCase(), R.drawable.elaphent),
-                new Images(str_images_name[12].toString().toLowerCase(), R.drawable.elaphent_2),new Images(str_images_name[13].toString().toLowerCase(), R.drawable.horse),new Images(str_images_name[14].toString().toLowerCase(), R.drawable.horse_2),
-                new Images(str_images_name[15].toString().toLowerCase(), R.drawable.gorilla),new Images(str_images_name[16].toString().toLowerCase(), R.drawable.gorilla_2),new Images(str_images_name[17].toString().toLowerCase(), R.drawable.goat),
-                new Images(str_images_name[18].toString().toLowerCase(), R.drawable.goat_2),new Images(str_images_name[19].toString().toLowerCase(), R.drawable.mice),new Images(str_images_name[20].toString().toLowerCase(), R.drawable.mice_2),
-                new Images(str_images_name[21].toString().toLowerCase(), R.drawable.monkey),new Images(str_images_name[22].toString().toLowerCase(), R.drawable.lion),new Images(str_images_name[23].toString().toLowerCase(), R.drawable.lion_2),
-                new Images(str_images_name[24].toString().toLowerCase(), R.drawable.puma),new Images(str_images_name[25].toString().toLowerCase(), R.drawable.puma_2),new Images(str_images_name[26].toString().toLowerCase(), R.drawable.rabbit),
-                new Images(str_images_name[27].toString().toLowerCase(), R.drawable.rabbit_2),new Images(str_images_name[28].toString().toLowerCase(), R.drawable.snake),new Images(str_images_name[29].toString().toLowerCase(), R.drawable.tiger),
-                new Images(str_images_name[30].toString().toLowerCase(), R.drawable.tiger_2),new Images(str_images_name[31].toString().toLowerCase(), R.drawable.wolf),new Images(str_images_name[32].toString().toLowerCase(), R.drawable.wolf_2),
-                new Images(str_images_name[32].toString().toLowerCase(), R.drawable.zebra)};
+        final Images[] images   = { new Images(str_images_name[0].toString().toLowerCase(), R.drawable.alligator),new Images(str_images_name[1].toString().toLowerCase(), R.drawable.cat),new Images(str_images_name[2].toString().toLowerCase(), R.drawable.car_2),
+                new Images(str_images_name[3].toString().toLowerCase(), R.drawable.chicken), new Images(str_images_name[4].toString().toLowerCase(), R.drawable.chicken_2),new Images(str_images_name[5].toString().toLowerCase(), R.drawable.deer),new Images(str_images_name[6].toString().toLowerCase(), R.drawable.deer_2),
+                new Images(str_images_name[7].toString().toLowerCase(), R.drawable.dog),new Images(str_images_name[8].toString().toLowerCase(), R.drawable.dog_2),new Images(str_images_name[9].toString().toLowerCase(), R.drawable.donkey),
+                new Images(str_images_name[10].toString().toLowerCase(), R.drawable.eagle),new Images(str_images_name[11].toString().toLowerCase(), R.drawable.eagle_2),new Images(str_images_name[12].toString().toLowerCase(), R.drawable.elaphent),
+                new Images(str_images_name[13].toString().toLowerCase(), R.drawable.elaphent_2),new Images(str_images_name[14].toString().toLowerCase(), R.drawable.horse),new Images(str_images_name[15].toString().toLowerCase(), R.drawable.horse_2),
+                new Images(str_images_name[16].toString().toLowerCase(), R.drawable.gorilla),new Images(str_images_name[17].toString().toLowerCase(), R.drawable.gorilla_2),new Images(str_images_name[18].toString().toLowerCase(), R.drawable.goat),
+                new Images(str_images_name[19].toString().toLowerCase(), R.drawable.goat_2),new Images(str_images_name[20].toString().toLowerCase(), R.drawable.mice),new Images(str_images_name[21].toString().toLowerCase(), R.drawable.mice_2),
+                new Images(str_images_name[22].toString().toLowerCase(), R.drawable.monkey),new Images(str_images_name[23].toString().toLowerCase(), R.drawable.lion),new Images(str_images_name[24].toString().toLowerCase(), R.drawable.lion_2),
+                new Images(str_images_name[25].toString().toLowerCase(), R.drawable.puma),new Images(str_images_name[26].toString().toLowerCase(), R.drawable.puma_2),new Images(str_images_name[27].toString().toLowerCase(), R.drawable.rabbit),
+                new Images(str_images_name[28].toString().toLowerCase(), R.drawable.rabbit_2),new Images(str_images_name[29].toString().toLowerCase(), R.drawable.snake),new Images(str_images_name[30].toString().toLowerCase(), R.drawable.tiger),
+                new Images(str_images_name[31].toString().toLowerCase(), R.drawable.tiger_2),new Images(str_images_name[32].toString().toLowerCase(), R.drawable.wolf),new Images(str_images_name[33].toString().toLowerCase(), R.drawable.wolf_2),
+                new Images(str_images_name[34].toString().toLowerCase(), R.drawable.zebra)};
 
         progressBar = findViewById(R.id.progressBar);
         countDownTimerTextView = findViewById(R.id.countDownTimerTextView);
@@ -203,9 +203,7 @@ public class GameActivity extends AppCompatActivity {
 
 
     public int random_answer(){
-
-
-
+       String temp_array[]=shuffle_answers();
         int str_images_name_random=new Random().nextInt(5 - 1) + 1;
         switch (str_images_name_random)
         {
@@ -213,33 +211,33 @@ public class GameActivity extends AppCompatActivity {
             case 1:
             {
                 btn1.setText(rightanswer.toString());
-                btn2.setText((String)answers[myRandomInt = new Random().nextInt(20 - 0) + 0].toString());
-                btn3.setText((String)answers[myRandomInt = new Random().nextInt(20 - 0) + 0].toString());
-                btn4.setText((String)answers[myRandomInt = new Random().nextInt(20 - 0) + 0].toString());
+                btn2.setText(temp_array[1].toString());
+                btn3.setText(temp_array[2].toString());
+                btn4.setText(temp_array[3].toString());
                 break;
 
             }
             case 2:
             {
-                btn1.setText((String)answers[myRandomInt = new Random().nextInt(20 - 0) + 0].toString());
+                btn1.setText(temp_array[1].toString());
                 btn2.setText(rightanswer.toString());
-                btn3.setText((String)answers[myRandomInt = new Random().nextInt(20 - 0) + 0].toString());
-                btn4.setText((String)answers[myRandomInt = new Random().nextInt(20 - 0) + 0].toString());
+                btn3.setText(temp_array[2].toString());
+                btn4.setText(temp_array[3].toString());
                 break;
             }
             case 3:
             {
-                btn1.setText((String)answers[myRandomInt = new Random().nextInt(20 - 0) + 0].toString());
-                btn2.setText((String)answers[myRandomInt = new Random().nextInt(20 - 0) + 0].toString());
+                btn1.setText(temp_array[1].toString());
+                btn2.setText(temp_array[2].toString());
                 btn3.setText(rightanswer.toString());
-                btn4.setText((String)answers[myRandomInt = new Random().nextInt(20 - 0) + 0].toString());
+                btn4.setText(temp_array[3].toString());
                 break;
             }
             case 4:
             {
-                btn1.setText((String)answers[myRandomInt = new Random().nextInt(20 - 0) + 0].toString());
-                btn2.setText((String)answers[myRandomInt = new Random().nextInt(20 - 0) + 0].toString());
-                btn3.setText((String)answers[myRandomInt = new Random().nextInt(20 - 0) + 0].toString());
+                btn1.setText(temp_array[1].toString());
+                btn2.setText(temp_array[2].toString());
+                btn3.setText(temp_array[3].toString());
                 btn4.setText(rightanswer.toString());
                 break;
             }
@@ -248,4 +246,20 @@ public class GameActivity extends AppCompatActivity {
         return 0;
 
     }
+
+
+    public String[] shuffle_answers()
+    {int j=0;
+     String temp[] = {rightanswer, answers[myRandomInt = new Random().nextInt(19 - 0) + 0].toString(),answers[myRandomInt = new Random().nextInt(19 - 0) + 0].toString(),
+              answers[myRandomInt = new Random().nextInt(19 - 0) + 0].toString()};
+      while (temp[0].toString().equals(temp[1].toString())||temp[0].toString().equals(temp[2].toString())||temp[0].toString().equals(temp[3].toString())||temp[1].toString().equals(temp[2].toString())||temp[1].toString().equals(temp[3].toString())||temp[2].toString().equals(temp[3].toString()))
+      {
+        temp[1]= answers[myRandomInt = new Random().nextInt(19 - 0) + 0].toString();
+        temp[2]= answers[myRandomInt = new Random().nextInt(19 - 0) + 0].toString();
+        temp[3]= answers[myRandomInt = new Random().nextInt(19 - 0) + 0].toString();
+        btn1.setText("test"+j++);
+     }
+    return temp;
+    }
+
 }
