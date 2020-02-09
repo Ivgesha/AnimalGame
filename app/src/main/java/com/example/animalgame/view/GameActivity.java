@@ -92,6 +92,10 @@ public class GameActivity extends AppCompatActivity {
                     btn1.setBackgroundColor(getResources().getColor(android.R.color.holo_green_light));
                     points++;
                     pointsTextView.setText("Points:"+points);
+                    progressBar.setProgress(progressBar.getProgress()+1);
+                    countDownTimerTextView.setText("Timer: "+progressBar.getProgress());
+
+
 
 
                 }
@@ -103,6 +107,7 @@ public class GameActivity extends AppCompatActivity {
                 index=myRandomInt = new Random().nextInt(28 - 0) + 0;
                 str_images_name_index=new Random().nextInt(34 - 0) + 0;
                 img.setImageResource(images[str_images_name_index].img_path);
+                btn1.setBackgroundColor(getResources().getColor(android.R.color.holo_green_light));
                 rightanswer = images[str_images_name_index].key.toString();
                 random_answer();
 
@@ -117,6 +122,9 @@ public class GameActivity extends AppCompatActivity {
                     btn2.setBackgroundColor(getResources().getColor(android.R.color.holo_green_light));
                     points++;
                     pointsTextView.setText("Points:"+points);
+                    progressBar.setProgress(progressBar.getProgress()+1);
+                    countDownTimerTextView.setText("Timer: "+progressBar.getProgress());
+
 
                 }
                 else {
@@ -140,6 +148,10 @@ public class GameActivity extends AppCompatActivity {
                     btn3.setBackgroundColor(getResources().getColor(android.R.color.holo_green_light));
                     points++;
                     pointsTextView.setText("Points:"+points);
+                    progressBar.setProgress(progressBar.getProgress()+1);
+                    countDownTimerTextView.setText("Timer: "+progressBar.getProgress());
+
+
 
                 }
                 else {
@@ -164,6 +176,8 @@ public class GameActivity extends AppCompatActivity {
                     btn4.setBackgroundColor(getResources().getColor(android.R.color.holo_green_light));
                     points++;
                     pointsTextView.setText("Points:"+points);
+                    progressBar.setProgress(progressBar.getProgress()+1);
+                    countDownTimerTextView.setText("Timer: "+progressBar.getProgress());
 
                 }
                 else {
@@ -250,14 +264,14 @@ public class GameActivity extends AppCompatActivity {
 
     public String[] shuffle_answers()
     {int j=0;
-     String temp[] = {rightanswer, answers[myRandomInt = new Random().nextInt(19 - 0) + 0].toString(),answers[myRandomInt = new Random().nextInt(19 - 0) + 0].toString(),
-              answers[myRandomInt = new Random().nextInt(19 - 0) + 0].toString()};
-      while (temp[0].toString().equals(temp[1].toString())||temp[0].toString().equals(temp[2].toString())||temp[0].toString().equals(temp[3].toString())||temp[1].toString().equals(temp[2].toString())||temp[1].toString().equals(temp[3].toString())||temp[2].toString().equals(temp[3].toString()))
+     String temp[] = {rightanswer.toLowerCase(), answers[myRandomInt = new Random().nextInt(19 - 0) + 0].toString().toLowerCase(),answers[myRandomInt = new Random().nextInt(19 - 0) + 0].toString().toLowerCase(),
+              answers[myRandomInt = new Random().nextInt(19 - 0) + 0].toString().toLowerCase()};
+      while ((temp[0].toString().toLowerCase()).equals((temp[1].toString().toLowerCase()))||(temp[0].toString().toLowerCase()).equals(temp[2].toString().toLowerCase())||(temp[0].toString().toLowerCase()).equals((temp[3].toString().toLowerCase()))||(temp[1].toString().toLowerCase()).equals((temp[2].toString().toLowerCase()))||(temp[1].toString().toLowerCase()).equals((temp[3].toString().toLowerCase()))||(temp[2].toString().toLowerCase()).equals((temp[3].toString().toLowerCase())))
       {
         temp[1]= answers[myRandomInt = new Random().nextInt(19 - 0) + 0].toString();
         temp[2]= answers[myRandomInt = new Random().nextInt(19 - 0) + 0].toString();
         temp[3]= answers[myRandomInt = new Random().nextInt(19 - 0) + 0].toString();
-        btn1.setText("test"+j++);
+        //btn1.setText("test"+j++);
      }
     return temp;
     }
