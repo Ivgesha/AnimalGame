@@ -3,4 +3,6 @@
     <string name="enterName">Enter your name...</string>
     <string name="startGame">Start Game!</string>
     <string name="howToPlay">How to Play?</string>
+    <string name="animalKingdom">Animal Kingdom</string>
+    <string name="score">Score:</string>
 </resources>

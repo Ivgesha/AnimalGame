@@ -6,6 +6,7 @@ import androidx.core.widget.ContentLoadingProgressBar;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -69,6 +70,8 @@ public class GameActivity extends AppCompatActivity {
                 new Images(str_images_name[28].toString().toLowerCase(), R.drawable.rabbit_2),new Images(str_images_name[29].toString().toLowerCase(), R.drawable.snake),new Images(str_images_name[30].toString().toLowerCase(), R.drawable.tiger),
                 new Images(str_images_name[31].toString().toLowerCase(), R.drawable.tiger_2),new Images(str_images_name[32].toString().toLowerCase(), R.drawable.wolf),new Images(str_images_name[33].toString().toLowerCase(), R.drawable.wolf_2),
                 new Images(str_images_name[34].toString().toLowerCase(), R.drawable.zebra)};
+
+        Log.d("animasl" ,"images[0]"+ images[0]);
 
         progressBar = findViewById(R.id.progressBar);
         countDownTimerTextView = findViewById(R.id.countDownTimerTextView);
