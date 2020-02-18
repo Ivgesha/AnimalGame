@@ -3,7 +3,7 @@ package com.example.animalgame.model;
 import android.media.Image;
 
 public class Question {
-    private Image animalImage;
+    private String animalImage;
     private String option1;
     private String option2;
     private String option3;
@@ -15,7 +15,7 @@ public class Question {
 
     }
 
-    public Question(Image animalImagel, String option1, String option2, String option3, String option4, int answerNumber) {
+    public Question(String animalImagel, String option1, String option2, String option3, String option4, int answerNumber) {
         this.animalImage = animalImagel;
         this.option1 = option1;
         this.option2 = option2;
@@ -24,11 +24,11 @@ public class Question {
         this.answerNumber = answerNumber;
     }
 
-    public Image getAnimalImagel() {
+    public String getAnimalImagel() {
         return animalImage;
     }
 
-    public void setAnimalImagel(Image animalImagel) {
+    public void setAnimalImagel(String animalImagel) {
         this.animalImage = animalImagel;
     }
 
