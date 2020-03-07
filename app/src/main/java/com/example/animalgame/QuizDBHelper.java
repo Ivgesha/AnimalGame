@@ -32,7 +32,7 @@ public class QuizDBHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_IMAGES_TABLE = "CREATE TABLE " +
                 QuizContract.ImageTable.TABLE_NAME + " ( " +
                 QuizContract.ImageTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                QuizContract.ImageTable.COLUMN_IMAGE + " TEXT, " +
+                QuizContract.ImageTable.COLUMN_IMAGE + " INTEGER, " +
                 QuizContract.ImageTable.COLUMN_OPTION1 + " TEXT, " +
                 QuizContract.ImageTable.COLUMN_OPTION2 + " TEXT, " +
                 QuizContract.ImageTable.COLUMN_OPTION3 + " TEXT, " +
@@ -52,14 +52,23 @@ public class QuizDBHelper extends SQLiteOpenHelper {
 
 
     private void fillImageTable() {
-        Question q1 = new Question("drawable://" + R.drawable.alligator, "A", "B", "C", "D", 1);
+        Question q1 = new Question( R.drawable.alligator, "Alligator", "Zebra", "Monkey", "Cat", 1);
+        Question q2 = new Question( R.drawable.cat, "Dod", "Cat", "Eagle", "Snake", 2);
+        Question q3 = new Question( R.drawable.dog, "Gorilla", "Horse", "Elephant", "dog", 4);
+        Question q4 = new Question( R.drawable.deer, "Horse", "Lion", "Deer", "Tiger", 3);
+        Question q5 = new Question( R.drawable.eagle, "Eagle", "Pigeon", "Goat", "Chicken", 1);
         addQuestion(q1);
+        addQuestion(q2);
+        addQuestion(q3);
+        addQuestion(q4);
+        addQuestion(q5);
+
     }
 
     private void addQuestion(Question question) {
 
         ContentValues cv = new ContentValues();
-        cv.put(QuizContract.ImageTable.COLUMN_IMAGE, question.getAnimalImagel());
+        cv.put(QuizContract.ImageTable.COLUMN_IMAGE, question.getAnimalImage());
         cv.put(QuizContract.ImageTable.COLUMN_OPTION1, question.getOption1());
         cv.put(QuizContract.ImageTable.COLUMN_OPTION2, question.getOption2());
         cv.put(QuizContract.ImageTable.COLUMN_OPTION3, question.getOption3());
@@ -76,7 +85,8 @@ public class QuizDBHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 Question question = new Question();
-                question.setAnimalImagel(c.getString(c.getColumnIndex(QuizContract.ImageTable.COLUMN_IMAGE)));
+             //   question.setAnimalImagel(c.getString(c.getColumnIndex(QuizContract.ImageTable.COLUMN_IMAGE)));
+                question.setAnimalImage(c.getInt(c.getColumnIndex(QuizContract.ImageTable.COLUMN_IMAGE)));
                 question.setOption1(c.getString(c.getColumnIndex(QuizContract.ImageTable.COLUMN_OPTION1)));
                 question.setOption2(c.getString(c.getColumnIndex(QuizContract.ImageTable.COLUMN_OPTION2)));
                 question.setOption3(c.getString(c.getColumnIndex(QuizContract.ImageTable.COLUMN_OPTION3)));
