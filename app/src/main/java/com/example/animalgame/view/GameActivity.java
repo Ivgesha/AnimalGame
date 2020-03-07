@@ -3,6 +3,7 @@ package com.example.animalgame.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.ContentLoadingProgressBar;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -38,6 +39,8 @@ public class GameActivity extends AppCompatActivity {
     TextView pointsTextView;
     public int str_images_name_index=0;
     public Images images[] = new Images[35];
+    Intent intent;
+    String fullname;
 
 
     String answers[] ={"Alligator","Cat","Chicken","Deer",
@@ -83,6 +86,8 @@ public class GameActivity extends AppCompatActivity {
         img.setImageResource(images[str_images_name_index].img_path);
         rightanswer = images[str_images_name_index].key.toString();
         random_answer();
+
+        fullname = getIntent().getStringExtra("full_name");
 
 
 
@@ -208,12 +213,21 @@ public class GameActivity extends AppCompatActivity {
             public void onTick(long millisUntilFinished) {
                 progressBar.setProgress((int) millisUntilFinished / 1000);
                 countDownTimerTextView.setText("Timer: "+progressBar.getProgress());               // is there a better way?
-            }
+
+
+           }
+
+
 
             @Override
             public void onFinish() {
                 Toast.makeText(GameActivity.this, "DONE!", Toast.LENGTH_SHORT).show();
-            }
+                    intent= new Intent(GameActivity.this, RecordActivity.class);
+                    intent.putExtra("FULL_NAME", fullname);
+                    intent.putExtra("SCORE", points );
+
+                    startActivity(intent); }
+
         }.start();
 
     }
@@ -274,7 +288,6 @@ public class GameActivity extends AppCompatActivity {
         temp[1]= answers[myRandomInt = new Random().nextInt(19 - 0) + 0].toString();
         temp[2]= answers[myRandomInt = new Random().nextInt(19 - 0) + 0].toString();
         temp[3]= answers[myRandomInt = new Random().nextInt(19 - 0) + 0].toString();
-        //btn1.setText("test"+j++);
      }
     return temp;
     }

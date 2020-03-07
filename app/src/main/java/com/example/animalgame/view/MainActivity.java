@@ -30,19 +30,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     Animation rotateAnimation,zoomInAnimation,zoomOutAnimation;
-
+DatabaseHelper myDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        myDb = new DatabaseHelper(this);
         titleTextView = findViewById(R.id.AnimalKingdomLogoEditText);
         enterNameEditText = findViewById(R.id.EnterNameEditText);
         startGameButton = findViewById(R.id.startGameButton);
         howToPlayButton = findViewById(R.id.howToPlayButton);
 
         // for testing only
-        enterNameEditText.setText("Test");
+        //enterNameEditText.setText("Test");
 
         // make a func that start all the animations
         runAnimations.run();
@@ -56,13 +56,16 @@ public class MainActivity extends AppCompatActivity {
             mHandler.postDelayed(this,10000);
         }
     };
-
+String fullname;
     public void startGameButtonClick(View view) {                 // on click startGame Button
-        intent = new Intent(this, GameActivity2.class);
+        intent = new Intent(this, GameActivity.class);
         Log.d("enterNameEditText", enterNameEditText.getText().toString());
+
         if (enterNameEditText.getText().toString().equals("")) {
             Toast.makeText(this, "name is empty", Toast.LENGTH_LONG).show();
         } else {
+            fullname =enterNameEditText.getText().toString();
+            intent.putExtra("full_name", fullname);
             this.startActivity(intent);
             Toast.makeText(this, "name is full! we can play", Toast.LENGTH_LONG).show();
         }
