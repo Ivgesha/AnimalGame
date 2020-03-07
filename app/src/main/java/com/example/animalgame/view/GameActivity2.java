@@ -232,7 +232,7 @@ public class GameActivity2 extends AppCompatActivity {
             btn3Presed = false;
         }
     }
-
+//
     public void buttonAnswerClick4(View view) {
         if (btn4Presed == false) {
             btn1Presed = false;
