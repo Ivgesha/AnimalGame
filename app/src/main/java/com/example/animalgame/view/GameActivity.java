@@ -222,7 +222,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 Toast.makeText(GameActivity.this, "DONE!", Toast.LENGTH_SHORT).show();
-                    intent= new Intent(GameActivity.this, RecordActivity.class);
+                 //   intent= new Intent(GameActivity.this, RecordActivity.class);
                     intent.putExtra("FULL_NAME", fullname);
                     intent.putExtra("SCORE", points );
 

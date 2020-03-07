@@ -3,12 +3,14 @@ package com.example.animalgame.view;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,10 +25,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+import static com.example.animalgame.view.MainActivity.EXTRA_USRENAME;
+
 public class GameActivity2 extends AppCompatActivity {
 
 
-    private static final long COUNTDOWN_IN_MILLIS = 10000;
+    public  static final String EXTRA_SCORE = "com.example.animalgame.view.EXTRA_SCORE";
+    private static final long COUNTDOWN_IN_MILLIS = 11000;
 
     private TextView textViewScore;
     private TextView textViewCountDown;
@@ -58,10 +63,19 @@ public class GameActivity2 extends AppCompatActivity {
     private boolean btn3Presed = false;
     private boolean btn4Presed = false;
 
+    private Bundle extras;
+    private String userName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game2);
+
+
+        extras = getIntent().getExtras();
+        userName = extras.getString(EXTRA_USRENAME);
+        Log.d("extrasTest", userName);
+
 
         textViewScore = findViewById(R.id.textViewScore);
         textViewCountDown = findViewById(R.id.textViewCountDown);
@@ -127,7 +141,10 @@ public class GameActivity2 extends AppCompatActivity {
     private void finishQuiz() {
 
         // passing on the name and opening the List
-        finish();
+        Intent intent = new Intent(this,ResultActivity.class);
+        intent.putExtra(EXTRA_SCORE,score);
+        intent.putExtra(EXTRA_USRENAME,userName);
+        startActivity(intent);
     }
 
     public void startCountDown() {
@@ -232,7 +249,8 @@ public class GameActivity2 extends AppCompatActivity {
             btn3Presed = false;
         }
     }
-//
+
+    //
     public void buttonAnswerClick4(View view) {
         if (btn4Presed == false) {
             btn1Presed = false;

@@ -18,24 +18,24 @@ import com.example.animalgame.R;
 
 public class MainActivity extends AppCompatActivity {
 
-
+public static final String EXTRA_USRENAME = "com.example.animalgame.view.EXTRA_USRENAME";
     private Handler mHandler = new Handler();
-
-
-
     Intent intent;
     TextView titleTextView;
     EditText enterNameEditText;
-    Button startGameButton,howToPlayButton;
+    Button startGameButton, howToPlayButton;
 
 
-    Animation rotateAnimation,zoomInAnimation,zoomOutAnimation;
-DatabaseHelper myDb;
+    Animation rotateAnimation, zoomInAnimation, zoomOutAnimation;
+
+    //DatabaseHelper myDb;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        myDb = new DatabaseHelper(this);
+       // myDb = new DatabaseHelper(this);
         titleTextView = findViewById(R.id.AnimalKingdomLogoEditText);
         enterNameEditText = findViewById(R.id.EnterNameEditText);
         startGameButton = findViewById(R.id.startGameButton);
@@ -48,26 +48,23 @@ DatabaseHelper myDb;
         runAnimations.run();
     }
 
-// running the Animations every 10 seconds
+    // running the Animations every 10 seconds
     private Runnable runAnimations = new Runnable() {
         @Override
         public void run() {
             startAnimations();
-            mHandler.postDelayed(this,10000);
+            mHandler.postDelayed(this, 10000);
         }
     };
-String fullname;
-    public void startGameButtonClick(View view) {                 // on click startGame Button
-        intent = new Intent(this, GameActivity.class);
-        Log.d("enterNameEditText", enterNameEditText.getText().toString());
 
+
+    public void startGameButtonClick(View view) {                 // on click startGame Button
+        intent = new Intent(this, GameActivity2.class);
         if (enterNameEditText.getText().toString().equals("")) {
             Toast.makeText(this, "name is empty", Toast.LENGTH_LONG).show();
         } else {
-            fullname =enterNameEditText.getText().toString();
-            intent.putExtra("full_name", fullname);
+            intent.putExtra(EXTRA_USRENAME, enterNameEditText.getText().toString().trim());
             this.startActivity(intent);
-            Toast.makeText(this, "name is full! we can play", Toast.LENGTH_LONG).show();
         }
 
     }
@@ -78,15 +75,14 @@ String fullname;
     }
 
 
-    public void startAnimations(){
-        zoomInAnimation = AnimationUtils.loadAnimation(this,R.anim.zoomin);
+    public void startAnimations() {
+        zoomInAnimation = AnimationUtils.loadAnimation(this, R.anim.zoomin);
         titleTextView.startAnimation(zoomInAnimation);
 //        zoomOutAnimation = AnimationUtils.loadAnimation(this,R.anim.zoomout);
 //        titleTextView.startAnimation(zoomOutAnimation);
         rotateAnimation = AnimationUtils.loadAnimation(this, R.anim.rotate);
         startGameButton.startAnimation(rotateAnimation);
     }
-
 
 
 }
