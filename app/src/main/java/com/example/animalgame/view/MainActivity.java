@@ -24,6 +24,7 @@ public static final String EXTRA_USRENAME = "com.example.animalgame.view.EXTRA_U
     TextView titleTextView;
     EditText enterNameEditText;
     Button startGameButton, howToPlayButton;
+    String username;
 
 
     Animation rotateAnimation, zoomInAnimation, zoomOutAnimation;
@@ -63,7 +64,8 @@ public static final String EXTRA_USRENAME = "com.example.animalgame.view.EXTRA_U
         if (enterNameEditText.getText().toString().equals("")) {
             Toast.makeText(this, "name is empty", Toast.LENGTH_LONG).show();
         } else {
-            intent.putExtra(EXTRA_USRENAME, enterNameEditText.getText().toString().trim());
+            username = enterNameEditText.getText().toString();
+            intent.putExtra(EXTRA_USRENAME, username);
             this.startActivity(intent);
         }
 

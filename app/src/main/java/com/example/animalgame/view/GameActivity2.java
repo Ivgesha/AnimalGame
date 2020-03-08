@@ -13,9 +13,17 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import java.lang.ref.WeakReference;
 import com.example.animalgame.QuizDBHelper;
 import com.example.animalgame.R;
 import com.example.animalgame.model.Question;
@@ -44,7 +52,7 @@ public class GameActivity2 extends AppCompatActivity {
     private Button buttonNext;
     private ColorStateList colorStateList;
     private ColorStateList countdownColorDefault;
-
+    public static ProgressBar progressBar;
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis;
 
@@ -86,6 +94,7 @@ public class GameActivity2 extends AppCompatActivity {
         buttonAnswer3 = findViewById(R.id.btnAnswer_3);
         buttonAnswer4 = findViewById(R.id.btnAnswer_4);
         buttonNext = findViewById(R.id.btnNext);
+        progressBar =findViewById(R.id.progressBar);
 
         colorStateList = buttonAnswer1.getTextColors();
         countdownColorDefault = textViewCountDown.getTextColors();
@@ -141,9 +150,9 @@ public class GameActivity2 extends AppCompatActivity {
     private void finishQuiz() {
 
         // passing on the name and opening the List
-        Intent intent = new Intent(this,ResultActivity.class);
-        intent.putExtra(EXTRA_SCORE,score);
-        intent.putExtra(EXTRA_USRENAME,userName);
+        Intent intent = new Intent(this,RecordActivity.class);
+        intent.putExtra("EXTRA_SCORE",score);
+        intent.putExtra("EXTRA_USRENAME",userName);
         startActivity(intent);
     }
 
