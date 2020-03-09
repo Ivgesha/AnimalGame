@@ -55,7 +55,8 @@ public class GameActivity2 extends AppCompatActivity {
     public static ProgressBar progressBar;
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis;
-
+    public static int seconds;
+    public static int max=(11000 / 1000) % 60;
 
     private List<Question> questionList;
     private int questionCounter;
@@ -70,7 +71,6 @@ public class GameActivity2 extends AppCompatActivity {
     private boolean btn2Presed = false;
     private boolean btn3Presed = false;
     private boolean btn4Presed = false;
-
     private Bundle extras;
     private String userName;
 
@@ -95,7 +95,7 @@ public class GameActivity2 extends AppCompatActivity {
         buttonAnswer4 = findViewById(R.id.btnAnswer_4);
         buttonNext = findViewById(R.id.btnNext);
         progressBar =findViewById(R.id.progressBar);
-
+        new ProgressBarAsyncTask().execute();
         colorStateList = buttonAnswer1.getTextColors();
         countdownColorDefault = textViewCountDown.getTextColors();
 
@@ -108,6 +108,52 @@ public class GameActivity2 extends AppCompatActivity {
         showNextQuestion();
 
     }
+
+    public static class ProgressBarAsyncTask extends AsyncTask<Integer, Integer, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressBar.setMax(max);
+            progressBar.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected String doInBackground(Integer... integers) {
+            for (int i = max; i >0; i=seconds) {
+                publishProgress(i);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return "Finished!";
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            progressBar.setProgress(values[0]);
+
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+
+            progressBar.setProgress(0);
+            progressBar.setVisibility(View.INVISIBLE);
+        }
+    }
+
+
+
+
+
+
 
     private void showNextQuestion() {
         //
@@ -179,9 +225,10 @@ public class GameActivity2 extends AppCompatActivity {
 
     private void updateCountDownText() {
         int minutes = (int) (timeLeftInMillis / 1000) / 60;
-        int seconds = (int) (timeLeftInMillis / 1000) % 60;
+        seconds = (int) (timeLeftInMillis / 1000) % 60;
         String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         textViewCountDown.setText(timeFormatted);
+
 
         // when the count down hit 3 sec it will turn red
         if (timeLeftInMillis < 3000) {
