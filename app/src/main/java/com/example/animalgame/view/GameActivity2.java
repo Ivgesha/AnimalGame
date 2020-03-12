@@ -93,7 +93,6 @@ public class GameActivity2 extends AppCompatActivity {
         countdownColorDefault = textViewCountDown.getTextColors();
         new ProgressBarAsyncTask().execute();
 
-
         QuizDBHelper dbHelper = new QuizDBHelper(this);
         questionList = dbHelper.getAllQuestions();
         questionCountTotal = questionList.size();
