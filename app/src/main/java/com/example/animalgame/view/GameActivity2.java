@@ -141,10 +141,10 @@ public class GameActivity2 extends AppCompatActivity {
     private void finishQuiz() {
 
         // passing on the name and opening the List
-        Intent intent = new Intent(this,ResultActivity.class);
-        intent.putExtra(EXTRA_SCORE,score);
-        intent.putExtra(EXTRA_USRENAME,userName);
-        startActivity(intent);
+//        Intent intent = new Intent(this,ResultActivity.class);
+//        intent.putExtra(EXTRA_SCORE,score);
+//        intent.putExtra(EXTRA_USRENAME,userName);
+//        startActivity(intent);
     }
 
     public void startCountDown() {
