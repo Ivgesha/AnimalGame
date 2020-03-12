@@ -98,7 +98,6 @@ public class GameActivity2 extends AppCompatActivity {
         questionList = dbHelper.getAllQuestions();
         questionCountTotal = questionList.size();
         Collections.shuffle(questionList); // shuffling the collection (the list of questions )
-
         showNextQuestion();
 
     }
