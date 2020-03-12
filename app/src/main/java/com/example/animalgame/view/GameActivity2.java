@@ -1,45 +1,41 @@
 package com.example.animalgame.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ProgressBar;
-import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
-import java.lang.ref.WeakReference;
 import com.example.animalgame.QuizDBHelper;
 import com.example.animalgame.R;
 import com.example.animalgame.model.Question;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+
 
 import static com.example.animalgame.view.MainActivity.EXTRA_USRENAME;
 
 public class GameActivity2 extends AppCompatActivity {
 
 
-    public  static final String EXTRA_SCORE = "com.example.animalgame.view.EXTRA_SCORE";
+    public static final String EXTRA_SCORE = "com.example.animalgame.view.EXTRA_SCORE";
     private static final long COUNTDOWN_IN_MILLIS = 11000;
+    public static int max=(11000 / 1000) % 60;
+    public static int sec=(11000 / 1000) % 60;
+
 
     private TextView textViewScore;
     private TextView textViewCountDown;
@@ -52,11 +48,10 @@ public class GameActivity2 extends AppCompatActivity {
     private Button buttonNext;
     private ColorStateList colorStateList;
     private ColorStateList countdownColorDefault;
-    public static ProgressBar progressBar;
+
     private CountDownTimer countDownTimer;
     private long timeLeftInMillis;
-    public static int seconds;
-    public static int max=(11000 / 1000) % 60;
+
 
     private List<Question> questionList;
     private int questionCounter;
@@ -65,12 +60,12 @@ public class GameActivity2 extends AppCompatActivity {
 
     private int score;
     private boolean answered;
-
-
+    ProgressBar progressBar;
     private boolean btn1Presed = false;
     private boolean btn2Presed = false;
     private boolean btn3Presed = false;
     private boolean btn4Presed = false;
+
     private Bundle extras;
     private String userName;
 
@@ -78,7 +73,6 @@ public class GameActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game2);
-
 
         extras = getIntent().getExtras();
         userName = extras.getString(EXTRA_USRENAME);
@@ -94,10 +88,10 @@ public class GameActivity2 extends AppCompatActivity {
         buttonAnswer3 = findViewById(R.id.btnAnswer_3);
         buttonAnswer4 = findViewById(R.id.btnAnswer_4);
         buttonNext = findViewById(R.id.btnNext);
-        progressBar =findViewById(R.id.progressBar);
-        new ProgressBarAsyncTask().execute();
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         colorStateList = buttonAnswer1.getTextColors();
         countdownColorDefault = textViewCountDown.getTextColors();
+        new ProgressBarAsyncTask().execute();
 
 
         QuizDBHelper dbHelper = new QuizDBHelper(this);
@@ -109,7 +103,9 @@ public class GameActivity2 extends AppCompatActivity {
 
     }
 
-    public static class ProgressBarAsyncTask extends AsyncTask<Integer, Integer, String> {
+
+
+ class ProgressBarAsyncTask extends AsyncTask<Integer, Integer, String> {
 
         @Override
         protected void onPreExecute() {
@@ -120,10 +116,10 @@ public class GameActivity2 extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Integer... integers) {
-            for (int i = max; i >0; i=seconds) {
+            for (int i = max; i >0; i=sec) {
                 publishProgress(i);
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -144,10 +140,12 @@ public class GameActivity2 extends AppCompatActivity {
             super.onPostExecute(s);
 
 
-            progressBar.setProgress(0);
-            progressBar.setVisibility(View.INVISIBLE);
+            //progressBar.setProgress(0);
+            //progressBar.setVisibility(View.INVISIBLE);
         }
     }
+
+
 
 
 
@@ -196,9 +194,9 @@ public class GameActivity2 extends AppCompatActivity {
     private void finishQuiz() {
 
         // passing on the name and opening the List
-        Intent intent = new Intent(this,RecordActivity.class);
-        intent.putExtra("EXTRA_SCORE",score);
-        intent.putExtra("EXTRA_USRENAME",userName);
+        Intent intent = new Intent(this, RecordActivity.class);
+        intent.putExtra("EXTRA_SCORE", score);
+        intent.putExtra("EXTRA_USRENAME", userName);
         startActivity(intent);
     }
 
@@ -225,10 +223,10 @@ public class GameActivity2 extends AppCompatActivity {
 
     private void updateCountDownText() {
         int minutes = (int) (timeLeftInMillis / 1000) / 60;
-        seconds = (int) (timeLeftInMillis / 1000) % 60;
+        int seconds = (int) (timeLeftInMillis / 1000) % 60;
         String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+        sec =seconds;
         textViewCountDown.setText(timeFormatted);
-
 
         // when the count down hit 3 sec it will turn red
         if (timeLeftInMillis < 3000) {
