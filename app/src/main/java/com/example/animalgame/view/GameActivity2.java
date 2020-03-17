@@ -225,6 +225,7 @@ public class GameActivity2 extends AppCompatActivity {
         String timeFormatted = String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
         sec =seconds;
         textViewCountDown.setText(timeFormatted);
+        new ProgressBarAsyncTask().execute();
 
         // when the count down hit 3 sec it will turn red
         if (timeLeftInMillis < 3000) {
