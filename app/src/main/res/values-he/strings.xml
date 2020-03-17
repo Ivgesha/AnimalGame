@@ -6,4 +6,11 @@
     <string name="howToPlay">איך משחקים?</string>
     <string name="animalKingdom">ממלכת החיות</string>
     <string name="score">נקודות:</string>
+    <string name="recordlist">טבלת שיאים:</string>
+    <string name="recordname">שם:</string>
+    <string name="recordsocre">תוצאה:</string>
+
+
+
+
 </resources>

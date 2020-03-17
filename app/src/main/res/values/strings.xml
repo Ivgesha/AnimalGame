@@ -5,4 +5,10 @@
     <string name="howToPlay">How to Play?</string>
     <string name="animalKingdom">Animal Kingdom</string>
     <string name="score">Score:</string>
+    <string name="recordlist">Record List:</string>
+    <string name="recordname">Name:</string>
+    <string name="recordsocre">Score:</string>
+
+
+
 </resources>
