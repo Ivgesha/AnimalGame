@@ -8,6 +8,7 @@ import com.example.animalgame.R;
 
 public class HowToPlayActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

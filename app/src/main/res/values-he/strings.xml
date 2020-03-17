@@ -5,5 +5,5 @@
     <string name ="startGame">התחל משחק!</string>
     <string name="howToPlay">איך משחקים?</string>
     <string name="animalKingdom">ממלכת החיות</string>
-    <string name="score">נקדות:</string>
+    <string name="score">נקודות:</string>
 </resources>
