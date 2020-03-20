@@ -3,6 +3,7 @@ package com.example.animalgame.view;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -18,16 +19,16 @@ import com.example.animalgame.R;
 
 public class MainActivity extends AppCompatActivity {
 
-public static final String EXTRA_USRENAME = "com.example.animalgame.view.EXTRA_USRENAME";
+    public static final String EXTRA_USERNAME = "com.example.animalgame.view.EXTRA_USRENAME";
     private Handler mHandler = new Handler();
-    Intent intent;
-    TextView titleTextView;
-    EditText enterNameEditText;
-    Button startGameButton, howToPlayButton;
-    String username;
+    private Intent intent;
+    private TextView titleTextView;
+    private EditText enterNameEditText;
+    private Button startGameButton, howToPlayButton;
+    private String username;
+    private MediaPlayer buttonClickMediaPlayer,themeMusicMediaPlayer;
 
-
-    Animation rotateAnimation, zoomInAnimation, zoomOutAnimation;
+    Animation rotateAnimation, zoomInAnimation, zoomOutAnimation, blinkAnim,bounceAnim,zoomInFadeAnim;
 
     //DatabaseHelper myDb;
 
@@ -36,17 +37,24 @@ public static final String EXTRA_USRENAME = "com.example.animalgame.view.EXTRA_U
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       // myDb = new DatabaseHelper(this);
+        // myDb = new DatabaseHelper(this);
         titleTextView = findViewById(R.id.AnimalKingdomLogoEditText);
         enterNameEditText = findViewById(R.id.EnterNameEditText);
         startGameButton = findViewById(R.id.startGameButton);
         howToPlayButton = findViewById(R.id.howToPlayButton);
+        buttonClickMediaPlayer = MediaPlayer.create(this,R.raw.button_click2);
+        themeMusicMediaPlayer = MediaPlayer.create(this,R.raw.theme_music);
 
         // for testing only
         //enterNameEditText.setText("Test");
 
         // make a func that start all the animations
+        themeMusicMediaPlayer.start();
         runAnimations.run();
+
+        enterNameEditText.setText("test");
+
+
     }
 
     // running the Animations every 10 seconds
@@ -60,30 +68,40 @@ public static final String EXTRA_USRENAME = "com.example.animalgame.view.EXTRA_U
 
 
     public void startGameButtonClick(View view) {                 // on click startGame Button
-        intent = new Intent(this, GameActivity2.class);
+        buttonClickMediaPlayer.start();
+        intent = new Intent(this, CountDownActivity.class);
         if (enterNameEditText.getText().toString().equals("")) {
             Toast.makeText(this, "name is empty", Toast.LENGTH_LONG).show();
         } else {
             username = enterNameEditText.getText().toString();
-            intent.putExtra(EXTRA_USRENAME, username);
+            intent.putExtra(EXTRA_USERNAME, username);
+            themeMusicMediaPlayer.stop();
             this.startActivity(intent);
         }
 
     }
 
     public void howToPlayClick(View view) {                      // on click howToPlay Button
+        buttonClickMediaPlayer.start();
         intent = new Intent(this, HowToPlayActivity.class);
         startActivity(intent);
     }
 
 
     public void startAnimations() {
-        zoomInAnimation = AnimationUtils.loadAnimation(this, R.anim.zoomin);
-        titleTextView.startAnimation(zoomInAnimation);
+        //blinkAnim = AnimationUtils.loadAnimation(this,R.anim.blink_anim);
+        //howToPlayButton.startAnimation(blinkAnim);
+        //zoomInAnimation = AnimationUtils.loadAnimation(this, R.anim.zoomin);
+        //titleTextView.startAnimation(zoomInAnimation);
 //        zoomOutAnimation = AnimationUtils.loadAnimation(this,R.anim.zoomout);
-//        titleTextView.startAnimation(zoomOutAnimation);
+//      titleTextView.startAnimation(zoomOutAnimation);
+//        bounceAnim = AnimationUtils.loadAnimation(this,R.anim.bounce);
+  //      titleTextView.startAnimation(bounceAnim);
+        zoomInFadeAnim = AnimationUtils.loadAnimation(this,R.anim.zoomin_fade);
+        titleTextView.startAnimation(zoomInFadeAnim);
         rotateAnimation = AnimationUtils.loadAnimation(this, R.anim.rotate);
         startGameButton.startAnimation(rotateAnimation);
+
     }
 
 

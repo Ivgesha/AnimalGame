@@ -8,7 +8,11 @@
     <string name="recordlist">Record List:</string>
     <string name="recordname">Name:</string>
     <string name="recordsocre">Score:</string>
-
+    <string name="GO">GO!</string>
+    <string name="Question">Question:</string>
+    <string name="Confirm">Confirm</string>
+    <string name="Next">Next</string>
+    <string name="Finish">Finish</string>
 
 
 </resources>

@@ -57,11 +57,22 @@ public class QuizDBHelper extends SQLiteOpenHelper {
         Question q3 = new Question( R.drawable.dog, "Gorilla", "Horse", "Elephant", "dog", 4);
         Question q4 = new Question( R.drawable.deer, "Horse", "Lion", "Deer", "Tiger", 3);
         Question q5 = new Question( R.drawable.eagle, "Eagle", "Pigeon", "Goat", "Chicken", 1);
+        Question q6 = new Question( R.drawable.donkey, "Cat", "Donkey", "Gorilla", "Elephant", 2);
+        Question q7 = new Question( R.drawable.chicken, "Eagle", "Deer", "Horse", "Chicken", 4);
+        Question q8 = new Question( R.drawable.gorilla, "Monkey", "Gorilla", "Tiger", "Alligator", 2);
+        Question q9 = new Question( R.drawable.horse, "Deer", "Dog", "Horse", "Goat", 3);
+        Question q10 = new Question( R.drawable.lion, "Cat", "Elephant", "Lion", "Eagle", 3);
+
         addQuestion(q1);
         addQuestion(q2);
         addQuestion(q3);
         addQuestion(q4);
         addQuestion(q5);
+        addQuestion(q6);
+        addQuestion(q7);
+        addQuestion(q8);
+        addQuestion(q9);
+        addQuestion(q10);
 
     }
 

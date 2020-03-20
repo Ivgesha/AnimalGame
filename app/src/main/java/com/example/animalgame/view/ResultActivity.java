@@ -8,7 +8,7 @@ import android.util.Log;
 import com.example.animalgame.R;
 
 import static com.example.animalgame.view.GameActivity2.EXTRA_SCORE;
-import static com.example.animalgame.view.MainActivity.EXTRA_USRENAME;
+import static com.example.animalgame.view.MainActivity.EXTRA_USERNAME;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -22,7 +22,7 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_result);
 
         extras = getIntent().getExtras();
-        userName = extras.getString(EXTRA_USRENAME);
+        userName = extras.getString(EXTRA_USERNAME);
         score = extras.getInt(EXTRA_SCORE,0);
 
         Log.d("extrasTest","userName - " + userName + "score + " + score  );

@@ -3,6 +3,7 @@ package com.example.animalgame.view;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -26,10 +27,12 @@ import java.util.List;
 import java.util.Locale;
 
 
-import static com.example.animalgame.view.MainActivity.EXTRA_USRENAME;
+import static com.example.animalgame.view.MainActivity.EXTRA_USERNAME;
 
 public class GameActivity2 extends AppCompatActivity {
 
+
+    private MediaPlayer buttonClickMediaPlayer,themeMusicMediaPlayer;
 
     public static final String EXTRA_SCORE = "com.example.animalgame.view.EXTRA_SCORE";
     private static final long COUNTDOWN_IN_MILLIS = 11000;
@@ -61,10 +64,10 @@ public class GameActivity2 extends AppCompatActivity {
     private int score;
     private boolean answered;
     ProgressBar progressBar;
-    private boolean btn1Presed = false;
-    private boolean btn2Presed = false;
-    private boolean btn3Presed = false;
-    private boolean btn4Presed = false;
+    private boolean btn1Pressed = false;
+    private boolean btn2Pressed = false;
+    private boolean btn3Pressed = false;
+    private boolean btn4Pressed = false;
 
     private Bundle extras;
     private String userName;
@@ -75,9 +78,12 @@ public class GameActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_game2);
 
         extras = getIntent().getExtras();
-        userName = extras.getString(EXTRA_USRENAME);
+        userName = extras.getString(EXTRA_USERNAME);
         Log.d("extrasTest", userName);
 
+        buttonClickMediaPlayer = MediaPlayer.create(this,R.raw.button_click2);
+        themeMusicMediaPlayer = MediaPlayer.create(this,R.raw.theme_music2);
+        themeMusicMediaPlayer.start();
 
         textViewScore = findViewById(R.id.textViewScore);
         textViewCountDown = findViewById(R.id.textViewCountDown);
@@ -173,13 +179,13 @@ public class GameActivity2 extends AppCompatActivity {
             buttonAnswer3.setText(currentQuestion.getOption3());
             buttonAnswer4.setText(currentQuestion.getOption4());
             questionCounter++;
-            textViewquestionCounter.setText("Question: " + questionCounter + "/" + questionCountTotal);
+            textViewquestionCounter.setText(getString(R.string.Question) + " " + questionCounter + "/" + questionCountTotal);
             answered = false;
-            btn1Presed = false;
-            btn2Presed = false;
-            btn3Presed = false;
-            btn4Presed = false;
-            buttonNext.setText("Confirm");
+            btn1Pressed = false;
+            btn2Pressed = false;
+            btn3Pressed = false;
+            btn4Pressed = false;
+            buttonNext.setText(getString(R.string.Confirm));
 
             timeLeftInMillis = COUNTDOWN_IN_MILLIS;
             startCountDown();
@@ -193,8 +199,9 @@ public class GameActivity2 extends AppCompatActivity {
 
         // passing on the name and opening the List
         Intent intent = new Intent(this, RecordActivity.class);
-        intent.putExtra("EXTRA_SCORE", score);
-        intent.putExtra("EXTRA_USRENAME", userName);
+        intent.putExtra(EXTRA_SCORE, score);
+        intent.putExtra( EXTRA_USERNAME, userName);
+        themeMusicMediaPlayer.stop();
         startActivity(intent);
     }
 
@@ -237,12 +244,13 @@ public class GameActivity2 extends AppCompatActivity {
 
     // on click of Confirm Next button
     public void btnConfirmNext(View view) {
+        buttonClickMediaPlayer.start();
         if (!answered) {  // if question answered;
-            Log.d("btnXPresed ", "btn1Presed " + btn1Presed);
-            Log.d("btnXPresed ", "btn2Presed " + btn2Presed);
-            Log.d("btnXPresed ", "btn3Presed " + btn3Presed);
-            Log.d("btnXPresed ", "btn4Presed " + btn4Presed);
-            if (btn1Presed == true || btn2Presed == true || btn3Presed == true || btn4Presed == true) {
+            Log.d("btnXPresed ", "btn1Presed " + btn1Pressed);
+            Log.d("btnXPresed ", "btn2Presed " + btn2Pressed);
+            Log.d("btnXPresed ", "btn3Presed " + btn3Pressed);
+            Log.d("btnXPresed ", "btn4Presed " + btn4Pressed);
+            if (btn1Pressed == true || btn2Pressed == true || btn3Pressed == true || btn4Pressed == true) {
                 // check answer
                 checkAnswer();
             } else {
@@ -255,68 +263,71 @@ public class GameActivity2 extends AppCompatActivity {
 
 
     public void buttonAnswerClick1(View view) {
-
-        if (btn1Presed == false) {
-            btn1Presed = true;
+        buttonClickMediaPlayer.start();
+        if (btn1Pressed == false) {
+            btn1Pressed = true;
             buttonAnswer1.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_3));
-            btn2Presed = false;
+            btn2Pressed = false;
             buttonAnswer2.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_1));
-            btn3Presed = false;
+            btn3Pressed = false;
             buttonAnswer3.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_1));
-            btn4Presed = false;
+            btn4Pressed = false;
             buttonAnswer4.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_1));
-        } else if (btn1Presed == true) {
+        } else if (btn1Pressed == true) {
             buttonAnswer1.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_1));
-            btn1Presed = false;
+            btn1Pressed = false;
         }
     }
 
     public void buttonAnswerClick2(View view) {
-        if (btn2Presed == false) {
-            btn1Presed = false;
+        buttonClickMediaPlayer.start();
+        if (btn2Pressed == false) {
+            btn1Pressed = false;
             buttonAnswer1.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_1));
-            btn2Presed = true;
+            btn2Pressed = true;
             buttonAnswer2.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_3));
-            btn3Presed = false;
+            btn3Pressed = false;
             buttonAnswer3.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_1));
-            btn4Presed = false;
+            btn4Pressed = false;
             buttonAnswer4.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_1));
-        } else if (btn2Presed == true) {
+        } else if (btn2Pressed == true) {
             buttonAnswer2.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_1));
-            btn2Presed = false;
+            btn2Pressed = false;
         }
     }
 
     public void buttonAnswerClick3(View view) {
-        if (btn3Presed == false) {
-            btn1Presed = false;
+        buttonClickMediaPlayer.start();
+        if (btn3Pressed == false) {
+            btn1Pressed = false;
             buttonAnswer1.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_1));
-            btn2Presed = false;
+            btn2Pressed = false;
             buttonAnswer2.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_1));
-            btn3Presed = true;
+            btn3Pressed = true;
             buttonAnswer3.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_3));
-            btn4Presed = false;
+            btn4Pressed = false;
             buttonAnswer4.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_1));
-        } else if (btn3Presed == true) {
+        } else if (btn3Pressed == true) {
             buttonAnswer3.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_1));
-            btn3Presed = false;
+            btn3Pressed = false;
         }
     }
 
     //
     public void buttonAnswerClick4(View view) {
-        if (btn4Presed == false) {
-            btn1Presed = false;
+        buttonClickMediaPlayer.start();
+        if (btn4Pressed == false) {
+            btn1Pressed = false;
             buttonAnswer1.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_1));
-            btn2Presed = false;
+            btn2Pressed = false;
             buttonAnswer2.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_1));
-            btn3Presed = false;
+            btn3Pressed = false;
             buttonAnswer3.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_1));
-            btn4Presed = true;
+            btn4Pressed = true;
             buttonAnswer4.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_3));
-        } else if (btn4Presed == true) {
+        } else if (btn4Pressed == true) {
             buttonAnswer4.setBackgroundDrawable(ContextCompat.getDrawable(this, R.drawable.button_1));
-            btn3Presed = false;
+            btn3Pressed = false;
         }
     }
 
@@ -327,19 +338,19 @@ public class GameActivity2 extends AppCompatActivity {
         countDownTimer.cancel();
         Button btnSelected;
         int answerNumber = 0;
-        if (btn1Presed == true) {
+        if (btn1Pressed == true) {
             btnSelected = findViewById(R.id.btnAnswer_1);
             answerNumber = 1;
         }
-        if (btn2Presed == true) {
+        if (btn2Pressed == true) {
             btnSelected = findViewById(R.id.btnAnswer_2);
             answerNumber = 2;
         }
-        if (btn3Presed == true) {
+        if (btn3Pressed == true) {
             btnSelected = findViewById(R.id.btnAnswer_3);
             answerNumber = 3;
         }
-        if (btn4Presed == true) {
+        if (btn4Pressed == true) {
             btnSelected = findViewById(R.id.btnAnswer_4);
             answerNumber = 4;
         }
@@ -373,9 +384,9 @@ public class GameActivity2 extends AppCompatActivity {
         }
 
         if (questionCounter < questionCountTotal) {
-            buttonNext.setText("NEXT");
+            buttonNext.setText(getString(R.string.Next));
         } else
-            buttonNext.setText("FINISH");
+            buttonNext.setText(getString(R.string.Finish));
     }
 
 
