@@ -27,6 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
+        android:textSize="20dp"
         android:autofillHints=""
         android:background="@null"
         android:layout_centerHorizontal="true"
@@ -48,23 +49,23 @@
         android:gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_alignTop="@id/EnterNameEditText"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="250dp"
 
          >
 
     </Button>
 
-    <Button
-        android:id="@+id/howToPlayButton"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/button_0"
-        android:text="@string/howToPlay"
-        android:textColor="#FFFFFF"
-        android:onClick="howToPlayClick"
-        android:gravity="center"
-        android:layout_alignTop="@id/startGameButton"
-        android:layout_centerHorizontal="true" />
+<!--    <Button-->
+<!--        android:id="@+id/howToPlayButton"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginTop="60dp"-->
+<!--        android:background="@drawable/button_0"-->
+<!--        android:text="@string/howToPlay"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        android:onClick="howToPlayClick"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_alignTop="@id/startGameButton"-->
+<!--        android:layout_centerHorizontal="true" />-->
 
 </RelativeLayout>

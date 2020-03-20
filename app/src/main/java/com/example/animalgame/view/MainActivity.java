@@ -3,6 +3,7 @@ package com.example.animalgame.view;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,7 +12,9 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,15 +23,20 @@ import com.example.animalgame.R;
 public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_USERNAME = "com.example.animalgame.view.EXTRA_USRENAME";
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String TEXT = "text";
+
+    private String sharedPrefrencesLoadString;
     private Handler mHandler = new Handler();
     private Intent intent;
     private TextView titleTextView;
     private EditText enterNameEditText;
     private Button startGameButton, howToPlayButton;
     private String username;
-    private MediaPlayer buttonClickMediaPlayer,themeMusicMediaPlayer;
+    private MediaPlayer buttonClickMediaPlayer, themeMusicMediaPlayer;
 
-    Animation rotateAnimation, zoomInAnimation, zoomOutAnimation, blinkAnim,bounceAnim,zoomInFadeAnim;
+
+    Animation rotateAnimation, zoomInAnimation, zoomOutAnimation, blinkAnim, bounceAnim, zoomInFadeAnim;
 
     //DatabaseHelper myDb;
 
@@ -41,30 +49,20 @@ public class MainActivity extends AppCompatActivity {
         titleTextView = findViewById(R.id.AnimalKingdomLogoEditText);
         enterNameEditText = findViewById(R.id.EnterNameEditText);
         startGameButton = findViewById(R.id.startGameButton);
-        howToPlayButton = findViewById(R.id.howToPlayButton);
-        buttonClickMediaPlayer = MediaPlayer.create(this,R.raw.button_click2);
-        themeMusicMediaPlayer = MediaPlayer.create(this,R.raw.theme_music);
+      //  howToPlayButton = findViewById(R.id.howToPlayButton);
+        buttonClickMediaPlayer = MediaPlayer.create(this, R.raw.button_click2);
+        themeMusicMediaPlayer = MediaPlayer.create(this, R.raw.theme_music);
 
-        // for testing only
-        //enterNameEditText.setText("Test");
 
-        // make a func that start all the animations
         themeMusicMediaPlayer.start();
         runAnimations.run();
 
-        enterNameEditText.setText("test");
-
+        loadData();
+        updateViews();
 
     }
 
-    // running the Animations every 10 seconds
-    private Runnable runAnimations = new Runnable() {
-        @Override
-        public void run() {
-            startAnimations();
-            mHandler.postDelayed(this, 10000);
-        }
-    };
+
 
 
     public void startGameButtonClick(View view) {                 // on click startGame Button
@@ -73,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         if (enterNameEditText.getText().toString().equals("")) {
             Toast.makeText(this, "name is empty", Toast.LENGTH_LONG).show();
         } else {
+            saveData();     // saving shared prefrences data
             username = enterNameEditText.getText().toString();
             intent.putExtra(EXTRA_USERNAME, username);
             themeMusicMediaPlayer.stop();
@@ -88,6 +87,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // running the Animations every 10 seconds
+    private Runnable runAnimations = new Runnable() {
+        @Override
+        public void run() {
+            startAnimations();
+            mHandler.postDelayed(this, 10000);
+        }
+    };
+
+
+
     public void startAnimations() {
         //blinkAnim = AnimationUtils.loadAnimation(this,R.anim.blink_anim);
         //howToPlayButton.startAnimation(blinkAnim);
@@ -96,13 +106,38 @@ public class MainActivity extends AppCompatActivity {
 //        zoomOutAnimation = AnimationUtils.loadAnimation(this,R.anim.zoomout);
 //      titleTextView.startAnimation(zoomOutAnimation);
 //        bounceAnim = AnimationUtils.loadAnimation(this,R.anim.bounce);
-  //      titleTextView.startAnimation(bounceAnim);
-        zoomInFadeAnim = AnimationUtils.loadAnimation(this,R.anim.zoomin_fade);
+        //      titleTextView.startAnimation(bounceAnim);
+        zoomInFadeAnim = AnimationUtils.loadAnimation(this, R.anim.zoomin_fade);
         titleTextView.startAnimation(zoomInFadeAnim);
         rotateAnimation = AnimationUtils.loadAnimation(this, R.anim.rotate);
         startGameButton.startAnimation(rotateAnimation);
 
     }
 
+
+
+
+// SharedPreferences functions
+
+
+    public void saveData() {
+        // MODE_PRIVATE means that you can change the shered prefrences from out app.
+        // and not from other apps
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(TEXT, enterNameEditText.getText().toString());
+        editor.apply();
+    }
+
+    public void loadData() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        // first argument is what we load.
+        // second argument is the default argument
+        sharedPrefrencesLoadString = sharedPreferences.getString(TEXT, "");
+    }
+
+    public void updateViews(){
+        enterNameEditText.setText(sharedPrefrencesLoadString);
+    }
 
 }

@@ -70,5 +70,10 @@ public class CountDownActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        countDownTimer.cancel();
+        finish();
+    }
 }

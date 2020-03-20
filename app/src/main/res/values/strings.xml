@@ -13,6 +13,8 @@
     <string name="Confirm">Confirm</string>
     <string name="Next">Next</string>
     <string name="Finish">Finish</string>
+    <string name="RememberMe">Remember me </string>
+    <string name="Score">Score:</string>
 
 
 </resources>

@@ -202,7 +202,8 @@ public class GameActivity2 extends AppCompatActivity {
         intent.putExtra(EXTRA_SCORE, score);
         intent.putExtra( EXTRA_USERNAME, userName);
         themeMusicMediaPlayer.stop();
-        startActivity(intent);
+        finish();
+        this.startActivity(intent);
     }
 
     public void startCountDown() {
@@ -356,7 +357,7 @@ public class GameActivity2 extends AppCompatActivity {
         }
         if (answerNumber == currentQuestion.getAnswerNumber()) {
             score++;
-            textViewScore.setText("Score: " + score);
+            textViewScore.setText(getString(R.string.score)+ " " + score);
         }
         showSolution();
     }
@@ -397,5 +398,12 @@ public class GameActivity2 extends AppCompatActivity {
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        themeMusicMediaPlayer.stop();
+        finish();
     }
 }
