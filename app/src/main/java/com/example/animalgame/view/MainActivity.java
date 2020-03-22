@@ -140,4 +140,17 @@ public class MainActivity extends AppCompatActivity {
         enterNameEditText.setText(sharedPrefrencesLoadString);
     }
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        themeMusicMediaPlayer.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        themeMusicMediaPlayer.start();
+
+    }
 }

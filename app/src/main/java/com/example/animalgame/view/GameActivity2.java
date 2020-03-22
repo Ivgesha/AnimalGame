@@ -406,4 +406,17 @@ public class GameActivity2 extends AppCompatActivity {
         themeMusicMediaPlayer.stop();
         finish();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        themeMusicMediaPlayer.pause();
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        themeMusicMediaPlayer.start();
+    }
 }
