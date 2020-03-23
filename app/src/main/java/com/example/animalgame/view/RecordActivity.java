@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import android.widget.ListAdapter;
+import android.widget.GridView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -23,12 +23,14 @@ public class RecordActivity extends AppCompatActivity {
     public ListView listView;
     boolean IsInserted;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
         db = new DatabaseHelper(this);
-        listView = (ListView) findViewById(R.id.listView);
+        listView = (ListView) findViewById(R.id.listview);
         fullname = getIntent().getStringExtra(EXTRA_USERNAME);
         score = getIntent().getIntExtra(EXTRA_SCORE , -1);
         IsInserted = db.insertData(fullname.toString(), score);
@@ -51,11 +53,11 @@ public class RecordActivity extends AppCompatActivity {
                 return;
             }
 
-            StringBuffer buffer = new StringBuffer();
-            while (res.moveToNext()) {
-                buffer.append("Name :" + res.getString(0) + "\n");
-                buffer.append("Score :" + res.getString(1) + "\n");
-            }
+           StringBuffer buffer = new StringBuffer();
+            //while (res.moveToNext()) {
+                //buffer.append("Name :" + res.getString(0) + "\n");
+                //buffer.append("Score :" + res.getString(1) + "\n");
+            //}
 
             // Show all data
             showRecords("Score Records", buffer.toString());
@@ -64,18 +66,17 @@ public class RecordActivity extends AppCompatActivity {
     }
 
     public void showRecords(String title, String Message) {
-
         //populate an ArrayList<String> from the database and then view it
-        ArrayList<String> theList = new ArrayList<>();
+        ArrayList<Player> theList = new ArrayList<Player>();
         Cursor data = db.getAllData();
         if (data.getCount() == 0) {
             Toast.makeText(this, "There are no contents in this list!", Toast.LENGTH_LONG).show();
         } else {
             while (data.moveToNext()) {
-                theList.add(data.getString(0) + "                                                           " + data.getString(1));
-                ListAdapter listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, theList);
-                listView.setAdapter(listAdapter);
+                theList.add(new Player(data.getString(0) ,Integer.parseInt(data.getString(1))));
             }
+            PlayerListAdapter adapter = new PlayerListAdapter(this,R.layout.adapter_view_layout,theList);
+            listView.setAdapter(adapter);
         }
     }
 
