@@ -54,11 +54,6 @@ public class RecordActivity extends AppCompatActivity {
             }
 
            StringBuffer buffer = new StringBuffer();
-            //while (res.moveToNext()) {
-                //buffer.append("Name :" + res.getString(0) + "\n");
-                //buffer.append("Score :" + res.getString(1) + "\n");
-            //}
-
             // Show all data
             showRecords("Score Records", buffer.toString());
         }
