@@ -39,7 +39,6 @@ public class GameActivity2 extends AppCompatActivity {
     public static int max=(11000 / 1000) % 60;
     public static int sec=(11000 / 1000) % 60;
 
-
     private TextView textViewScore;
     private TextView textViewCountDown;
     private TextView textViewquestionCounter;
