@@ -55,9 +55,6 @@ public class QuizDBHelper extends SQLiteOpenHelper {
 
 
     private void fillImageTable() {
-        // we are using the method
-        // because to use getString we need a context and we dont have one here ( auxiliry class )
-
         // we using hard coded text because the getString need a context
         // and Resources.getSystem().getString(R.string.something) is crashing!
         Question q1 = new Question( R.drawable.alligator, "Alligator", "Zebra", "Monkey", "Cat", 1);
