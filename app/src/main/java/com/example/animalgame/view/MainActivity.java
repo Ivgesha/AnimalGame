@@ -22,6 +22,10 @@ import com.example.animalgame.R;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
+
+
     public static final String EXTRA_USERNAME = "com.example.animalgame.view.EXTRA_USRENAME";
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String TEXT = "text";
@@ -44,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         setContentView(R.layout.activity_main);
         // myDb = new DatabaseHelper(this);
         titleTextView = findViewById(R.id.AnimalKingdomLogoEditText);

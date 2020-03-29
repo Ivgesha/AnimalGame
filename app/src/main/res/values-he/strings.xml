@@ -16,6 +16,24 @@
     <string name="Finish">סיום</string>
     <string name="RememberMe">זכור אותי</string>
     <string name="Score">תוצאה:</string>
+    <string name="Alligator">אליגטור</string>
+    <string name="Zebra">זברה</string>
+    <string name="Dog">כלב</string>
+    <string name="Cat">חתול</string>
+    <string name="Eagle">נשר</string>
+    <string name="Snake">נחש</string>
+    <string name="Gorilla">גורילה</string>
+    <string name="Monkey">קוף</string>
+    <string name="Horse">סוס</string>
+    <string name="Elephant">פיל</string>
+    <string name="Lion">אריה</string>
+    <string name="Deer">צבי</string>
+    <string name="Tiger">נמר</string>
+    <string name="Pigeon">פנגווין</string>
+    <string name="Goat">עז</string>
+    <string name="Chicken">תרנגול</string>
+    <string name="Donkey">חמור</string>
+
 
 
 

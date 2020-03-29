@@ -2,6 +2,7 @@ package com.example.animalgame;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -17,6 +18,8 @@ public class QuizDBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "DataBase.db";
     public static final int DATABASE_VERSION = 1;
+
+
 
     private SQLiteDatabase db;
 
@@ -52,16 +55,19 @@ public class QuizDBHelper extends SQLiteOpenHelper {
 
 
     private void fillImageTable() {
-        Question q1 = new Question( R.drawable.alligator, "Alligator", "Zebra", "Monkey", "Cat", 1);
-        Question q2 = new Question( R.drawable.cat, "Dod", "Cat", "Eagle", "Snake", 2);
-        Question q3 = new Question( R.drawable.dog, "Gorilla", "Horse", "Elephant", "dog", 4);
-        Question q4 = new Question( R.drawable.deer, "Horse", "Lion", "Deer", "Tiger", 3);
-        Question q5 = new Question( R.drawable.eagle, "Eagle", "Pigeon", "Goat", "Chicken", 1);
-        Question q6 = new Question( R.drawable.donkey, "Cat", "Donkey", "Gorilla", "Elephant", 2);
-        Question q7 = new Question( R.drawable.chicken, "Eagle", "Deer", "Horse", "Chicken", 4);
-        Question q8 = new Question( R.drawable.gorilla, "Monkey", "Gorilla", "Tiger", "Alligator", 2);
-        Question q9 = new Question( R.drawable.horse, "Deer", "Dog", "Horse", "Goat", 3);
-        Question q10 = new Question( R.drawable.lion, "Cat", "Elephant", "Lion", "Eagle", 3);
+        // we are using the method Resources.getSystem().getString(R.string.something)
+        // because to use getString we need a context and we dont have one here ( auxiliry class )
+
+        Question q1 = new Question( R.drawable.alligator, Resources.getSystem().getString(R.string.Alligator), Resources.getSystem().getString(R.string.Zebra), Resources.getSystem().getString(R.string.Monkey), Resources.getSystem().getString(R.string.Cat), 1);
+        Question q2 = new Question( R.drawable.cat, Resources.getSystem().getString(R.string.Dog), Resources.getSystem().getString(R.string.Cat), Resources.getSystem().getString(R.string.Eagle), Resources.getSystem().getString(R.string.Snake), 2);
+        Question q3 = new Question( R.drawable.dog, Resources.getSystem().getString(R.string.Gorilla), Resources.getSystem().getString(R.string.Horse), Resources.getSystem().getString(R.string.Elephant), Resources.getSystem().getString(R.string.Dog), 4);
+        Question q4 = new Question( R.drawable.deer, Resources.getSystem().getString(R.string.Horse), Resources.getSystem().getString(R.string.Lion), Resources.getSystem().getString(R.string.Deer), Resources.getSystem().getString(R.string.Tiger), 3);
+        Question q5 = new Question( R.drawable.eagle, Resources.getSystem().getString(R.string.Eagle), Resources.getSystem().getString(R.string.Pigeon), Resources.getSystem().getString(R.string.Goat), Resources.getSystem().getString(R.string.Chicken), 1);
+        Question q6 = new Question( R.drawable.donkey, Resources.getSystem().getString(R.string.Cat), Resources.getSystem().getString(R.string.Donkey), Resources.getSystem().getString(R.string.Gorilla), Resources.getSystem().getString(R.string.Elephant), 2);
+        Question q7 = new Question( R.drawable.chicken, Resources.getSystem().getString(R.string.Eagle), Resources.getSystem().getString(R.string.Deer), Resources.getSystem().getString(R.string.Horse), Resources.getSystem().getString(R.string.Chicken), 4);
+        Question q8 = new Question( R.drawable.gorilla, Resources.getSystem().getString(R.string.Monkey), Resources.getSystem().getString(R.string.Gorilla), Resources.getSystem().getString(R.string.Tiger), Resources.getSystem().getString(R.string.Alligator), 2);
+        Question q9 = new Question( R.drawable.horse, Resources.getSystem().getString(R.string.Deer), Resources.getSystem().getString(R.string.Dog), Resources.getSystem().getString(R.string.Horse), Resources.getSystem().getString(R.string.Goat), 3);
+        Question q10 = new Question( R.drawable.lion, Resources.getSystem().getString(R.string.Cat), Resources.getSystem().getString(R.string.Elephant), Resources.getSystem().getString(R.string.Lion), Resources.getSystem().getString(R.string.Eagle), 3);
 
         addQuestion(q1);
         addQuestion(q2);

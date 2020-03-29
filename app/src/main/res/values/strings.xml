@@ -15,6 +15,24 @@
     <string name="Finish">Finish</string>
     <string name="RememberMe">Remember me </string>
     <string name="Score">Score:</string>
+    <string name="Alligator">Alligator</string>
+    <string name="Zebra">Zebra</string>
+    <string name="Dog">Dog</string>
+    <string name="Cat">Cat</string>
+    <string name="Eagle">Eagle</string>
+    <string name="Snake">Snake</string>
+    <string name="Gorilla">Gorilla</string>
+    <string name="Monkey">Monkey</string>
+    <string name="Horse">Horse</string>
+    <string name="Elephant">Elephant</string>
+    <string name="Lion">Lion</string>
+    <string name="Deer">Deer</string>
+    <string name="Tiger">Tiger</string>
+    <string name="Pigeon">Pigeon</string>
+    <string name="Goat">Goat</string>
+    <string name="Chicken">Chicken</string>
+    <string name="Donkey">Donkey</string>
+
 
 
 </resources>

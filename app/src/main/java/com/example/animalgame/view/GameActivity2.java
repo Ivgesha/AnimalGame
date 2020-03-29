@@ -406,6 +406,8 @@ public class GameActivity2 extends AppCompatActivity {
         finish();
     }
 
+
+    //
     @Override
     protected void onPause() {
         super.onPause();
